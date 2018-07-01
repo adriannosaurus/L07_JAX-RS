@@ -26,6 +26,7 @@ public class ShowResource
      * @return an instance of java.lang.String
      */
     @GET
+    @Path("hello")
     @Produces(MediaType.TEXT_HTML)
     public String getHtml()
     {
