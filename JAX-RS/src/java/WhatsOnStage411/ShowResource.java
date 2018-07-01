@@ -1,5 +1,6 @@
 package WhatsOnStage411;
 
+import java.util.ArrayList;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -15,10 +16,26 @@ public class ShowResource
 {
     @Context
     private UriInfo context;
+    private ArrayList<Show> showList;
 
     public ShowResource()
     {
-        //
+        showList = new ArrayList();
+    }
+    
+    /**
+     * PUT method for updating or creating an instance of ShowResource
+     * @param content representation for the resource
+     * @return 
+     */
+    @PUT
+    //@Path("create")
+    @Consumes(MediaType.TEXT_HTML)
+    public String putHtml(String content)
+    {
+        Show show = new Show(content);
+        showList.add(show);
+        return "Show added: " + show.getTitle();
     }
     
     /**
@@ -26,21 +43,10 @@ public class ShowResource
      * @return an instance of java.lang.String
      */
     @GET
-    @Path("hello")
+    //@Path("read")
     @Produces(MediaType.TEXT_HTML)
     public String getHtml()
     {
-        return "<html><head><title>Hello there</title></head><body>Hello from getHTML() in the ShowResource class</body></html>";
-    }
-
-    /**
-     * PUT method for updating or creating an instance of ShowResource
-     * @param content representation for the resource
-     */
-    @PUT
-    @Consumes(MediaType.TEXT_HTML)
-    public void putHtml(String content)
-    {
-        //test commit with renamed Github repo
+        return "You have called the getHTML() method in the ShowResource.java class.";
     }
 }
