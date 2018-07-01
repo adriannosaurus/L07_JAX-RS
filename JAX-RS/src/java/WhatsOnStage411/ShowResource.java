@@ -21,6 +21,7 @@ public class ShowResource
     public ShowResource()
     {
         showList = new ArrayList();
+        
     }
     
     /**
