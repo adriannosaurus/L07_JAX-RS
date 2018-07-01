@@ -40,6 +40,6 @@ public class ShowResource
     @Consumes(MediaType.TEXT_HTML)
     public void putHtml(String content)
     {
-        //
+        //test commit with renamed Github repo
     }
 }
