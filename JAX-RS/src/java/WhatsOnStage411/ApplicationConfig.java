@@ -26,7 +26,6 @@ public class ApplicationConfig extends Application
     private void addRestResourceClasses(Set<Class<?>> resources)
     {
         resources.add(WhatsOnStage411.ShowResource.class);
-        resources.add(WhatsOnStage411.ShowResource.delete.class);
        
         
     }

@@ -1,18 +1,9 @@
 package WhatsOnStage411;
 
 import java.util.ArrayList;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.Produces;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PUT;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.PathParam;
+import javax.ws.rs.core.*;
+import javax.ws.rs.*;
 
-//For this app, I think we only need to focus on one aspect of the site. I arbitrarily chose show
 @Path("show")
 public class ShowResource
 {
@@ -25,50 +16,62 @@ public class ShowResource
         showList = new ArrayList();
         
     }
-    
-    /**
-     * PUT method for updating or creating an instance of ShowResource
-     * @param content representation for the resource
-     * @return 
-     */
-    @PUT
+
+    @POST
     //@Path("create")
     @Consumes(MediaType.TEXT_HTML)
-    public String putHtml(String content)
+    public String createShow(String content)
     {
         Show show = new Show(content);
         showList.add(show);
         return "Show added: " + show.getTitle();
     }
-    
-    /**
-     * Retrieves representation of an instance of WhatsOnStage411.ShowResource
-     * @return an instance of java.lang.String
-     */
+
     @GET
     //@Path("read")
     @Produces(MediaType.TEXT_HTML)
-    public String getHtml() {
-        try {
-            Show readShow = showList.get(0);
-            String showTitle = readShow.getTitle();
-            return showTitle;
-//        return "You have called the getHTML() method in the ShowResource.java class.";
-        } catch (IndexOutOfBoundsException e) {
-            return "The List is Empty";
+    public String getShow()
+    {
+        String toReturn = "   ";
+        showList.add(new Show("Show 1"));
+        showList.add(new Show("Show 2"));
+        showList.add(new Show("Show 3"));
+        showList.add(new Show("Show 4"));
+        
+        if (!showList.isEmpty())
+        {
+            for (int i = 1; i <= showList.size(); ++i)
+            {
+                toReturn += (showList.get(i-1).getTitle());
+                if (i != showList.size())
+                {
+                    toReturn += "   ||   ";
+                }
+            }
+            return toReturn;
         }
+        else
+        {
+            return "The list is empty";
+        }
+        
     }
     
-    @Path("delete")
-    public class delete 
-    {
+//    @PUT
+//    //@Path("update")
+//    @Consumes(MediaType.TEXT_HTML)
+//    public String putShow(String content)
+//    {
+//        Show show = new Show(content);
+//        showList.add(show);
+//        return "Show added: " + show.getTitle();
+//    }
+    
     @DELETE
-    @Path("{id}")
-    public void removeEntity(@PathParam("id") 
-    short id) 
-        {
-            removeEntity(id);
-        }
+    @Path("delete")
+    public void deleteShow()
+    {
+        //
     }
     
 }
