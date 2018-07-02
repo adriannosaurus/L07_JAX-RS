@@ -64,6 +64,11 @@ public class ShowResource
     @Consumes(MediaType.TEXT_HTML)
     public String putShow(String input)
     {
+        showList.add(new Show("Phantom of the Opera"));
+        showList.add(new Show("Les Miserables"));
+        showList.add(new Show("Book of Mormon"));
+        showList.add(new Show("Legally Blonde"));
+        
         int shownum = 0;
         String newTitle = "";
         String x = "";
@@ -92,9 +97,10 @@ public class ShowResource
     @DELETE
     //@Path("delete")
     @Produces(MediaType.TEXT_HTML)
-    public String deleteShow(int update)
+    public String deleteShow(String update)
     {
-        Show delete = showList.get(update);
+        int i = Integer.parseInt(update);
+        Show delete = showList.get(i);
         showList.remove(delete);
 
         return delete.getTitle() + " has been deleted";
