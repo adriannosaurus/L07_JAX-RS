@@ -48,9 +48,15 @@ public class ShowResource
     @GET
     //@Path("read")
     @Produces(MediaType.TEXT_HTML)
-    public String getHtml()
-    {
-        return "You have called the getHTML() method in the ShowResource.java class.";
+    public String getHtml() {
+        try {
+            Show readShow = showList.get(0);
+            String showTitle = readShow.getTitle();
+            return showTitle;
+//        return "You have called the getHTML() method in the ShowResource.java class.";
+        } catch (IndexOutOfBoundsException e) {
+            return "The List is Empty";
+        }
     }
     
     @Path("delete")
