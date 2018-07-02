@@ -18,8 +18,8 @@ public class ApplicationConfig extends Application
         return resources;
     }
     
-@Path("departments")
-public class DepartmentService 
+@Path("delete")
+public class delete 
 {
     @DELETE
     @Path("{id}")
@@ -28,7 +28,6 @@ public class DepartmentService
     {
         removeEntity(id);
     }
-  //Other methods removed for brevity
 }
 
 
@@ -40,7 +39,7 @@ public class DepartmentService
      */
     private void addRestResourceClasses(Set<Class<?>> resources)
     {
-        resources.add(WhatsOnStage411.ApplicationConfig.DepartmentService.class);
+        resources.add(WhatsOnStage411.ApplicationConfig.delete.class);
         resources.add(WhatsOnStage411.ShowResource.class);
         
         
