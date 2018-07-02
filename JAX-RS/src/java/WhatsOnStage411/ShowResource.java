@@ -9,18 +9,20 @@ public class ShowResource
 {
     @Context
     private UriInfo context;
-    private ArrayList<Show> showList;
+    private ArrayList<Show> showList = new ArrayList();
 
     public ShowResource()
     {
-        showList = new ArrayList();
-        
+        //
     }
-
+    
     @POST
     //@Path("create")
+    @Consumes(MediaType.TEXT_HTML)
+    //public String createShow(@HeaderParam("Referer") String referer, String content)
     public String createShow(String content)
     {
+        //logSource(referer);
         Show show = new Show(content);
         showList.add(show);
         return "Show added: " + show.getTitle();
@@ -56,6 +58,7 @@ public class ShowResource
         
     }
     
+    //Input should be formatted index/newtitle. Bulk of the method below separates the input into substrings
     @PUT
     //@Path("update")
     @Consumes(MediaType.TEXT_HTML)
@@ -87,11 +90,14 @@ public class ShowResource
     }
     
     @DELETE
-    @Path("delete")
-    public void deleteShow(int update)
+    //@Path("delete")
+    @Produces(MediaType.TEXT_HTML)
+    public String deleteShow(int update)
     {
-    Show delete = showList.get(update);
-    showList.remove(delete);
+        Show delete = showList.get(update);
+        showList.remove(delete);
+
+        return delete.getTitle() + " has been deleted";
     }
     
 }
