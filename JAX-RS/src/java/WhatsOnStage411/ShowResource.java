@@ -9,6 +9,8 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.PathParam;
 
 //For this app, I think we only need to focus on one aspect of the site. I arbitrarily chose show
 @Path("show")
@@ -50,4 +52,17 @@ public class ShowResource
     {
         return "You have called the getHTML() method in the ShowResource.java class.";
     }
+    
+    @Path("delete")
+    public class delete 
+    {
+    @DELETE
+    @Path("{id}")
+    public void removeEntity(@PathParam("id") 
+    short id) 
+        {
+            removeEntity(id);
+        }
+    }
+    
 }

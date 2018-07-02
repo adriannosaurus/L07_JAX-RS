@@ -2,9 +2,6 @@ package WhatsOnStage411;
 
 import java.util.Set;
 import javax.ws.rs.core.Application;
-import javax.ws.rs.Path;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.PathParam;
 
 
 @javax.ws.rs.ApplicationPath("webresources")
@@ -17,18 +14,7 @@ public class ApplicationConfig extends Application
         addRestResourceClasses(resources);
         return resources;
     }
-    
-@Path("delete")
-public class delete 
-{
-    @DELETE
-    @Path("{id}")
-    public void removeEntity(@PathParam("id") 
-    short id) 
-    {
-        removeEntity(id);
-    }
-}
+   
 
 
     /**
@@ -39,9 +25,9 @@ public class delete
      */
     private void addRestResourceClasses(Set<Class<?>> resources)
     {
-        resources.add(WhatsOnStage411.ApplicationConfig.delete.class);
         resources.add(WhatsOnStage411.ShowResource.class);
-        
+        resources.add(WhatsOnStage411.ShowResource.delete.class);
+       
         
     }
 
