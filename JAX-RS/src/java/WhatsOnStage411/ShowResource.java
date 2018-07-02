@@ -59,17 +59,38 @@ public class ShowResource
     @PUT
     //@Path("update")
     @Consumes(MediaType.TEXT_HTML)
-    public void putShow(int shownum, String rename)
+    public String putShow(String input)
     {
+        int shownum = 0;
+        String newTitle = "";
+        String x = "";
+        
+        for(int i = 0; i < input.length(); ++i)
+        {
+            char z = input.charAt(i);
+            if(z != '/')
+            {
+                x += (String) x;
+            }
+            else
+            {
+                shownum = Integer.parseInt(x);
+                newTitle = input.substring(i + 1);
+                break;
+            }
+        }
+        
         Show toEdit = showList.get(shownum - 1);
-        toEdit.setTitle(rename);
+        toEdit.setTitle(newTitle);
+        
+        return "Show " + shownum + " renamed to: " + newTitle;
     }
     
     @DELETE
     //@Path("delete")
-    public void deleteShow()
+    public void deleteShow(int shownum)
     {
-        //
+        showList.remove(shownum - 1);
     }
     
 }
