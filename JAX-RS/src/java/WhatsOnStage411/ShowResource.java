@@ -87,10 +87,11 @@ public class ShowResource
     }
     
     @DELETE
-    //@Path("delete")
-    public void deleteShow(int shownum)
+    @Path("delete")
+    public void deleteShow(int update)
     {
-        showList.remove(shownum - 1);
+    Show delete = showList.get(update);
+    showList.remove(delete);
     }
     
 }
