@@ -17,4 +17,9 @@ public class Show
     {
         return title;
     }
+    public void setTitle(String t)
+    {
+        title = t;
+    }
+    
 }

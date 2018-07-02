@@ -33,16 +33,16 @@ public class ShowResource
     public String getShow()
     {
         String toReturn = "   ";
-        showList.add(new Show("Show 1"));
-        showList.add(new Show("Show 2"));
-        showList.add(new Show("Show 3"));
-        showList.add(new Show("Show 4"));
+        showList.add(new Show("Phantom of the Opera"));
+        showList.add(new Show("Les Miserables"));
+        showList.add(new Show("Book of Mormon"));
+        showList.add(new Show("Legally Blonde"));
         
         if (!showList.isEmpty())
         {
             for (int i = 1; i <= showList.size(); ++i)
             {
-                toReturn += (showList.get(i-1).getTitle());
+                toReturn += ("(" + i + ")  " + showList.get(i-1).getTitle());
                 if (i != showList.size())
                 {
                     toReturn += "   ||   ";
@@ -57,18 +57,17 @@ public class ShowResource
         
     }
     
-//    @PUT
-//    //@Path("update")
-//    @Consumes(MediaType.TEXT_HTML)
-//    public String putShow(String content)
-//    {
-//        Show show = new Show(content);
-//        showList.add(show);
-//        return "Show added: " + show.getTitle();
-//    }
+    @PUT
+    //@Path("update")
+    @Consumes(MediaType.TEXT_HTML)
+    public void putShow(int shownum, String rename)
+    {
+        Show toEdit = showList.get(shownum - 1);
+        toEdit.setTitle(rename);
+    }
     
     @DELETE
-    @Path("delete")
+    //@Path("delete")
     public void deleteShow()
     {
         //
