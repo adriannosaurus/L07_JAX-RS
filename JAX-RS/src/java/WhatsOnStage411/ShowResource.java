@@ -19,7 +19,6 @@ public class ShowResource
 
     @POST
     //@Path("create")
-    @Consumes(MediaType.TEXT_HTML)
     public String createShow(String content)
     {
         Show show = new Show(content);
